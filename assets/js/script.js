@@ -1,4 +1,4 @@
-var weatherKey = '2e819f4a06b55a326d33b3931a5f59d9'
+var weatherKey = 'd334570854db71a62f3ac1cc3658a07f'
 var picEl = $('#weatherPic')
 var tempEl = $('#temp')
 var windEl = $('#wind')
