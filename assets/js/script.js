@@ -12,7 +12,7 @@ var historyEl =  $('#history')
 function weatherCall(city) {
     var city = $('#user-input').val()
     localStorage.setItem(city, city)
-    fetch('http://api.openweathermap.org/data/2.5/weather?q=' + city + '&appid=' + weatherKey + '&units=imperial')
+    fetch('https://api.openweathermap.org/data/2.5/weather?q=' + city + '&appid=' + weatherKey + '&units=imperial')
         .then(data => data.json())
         .then(function (response) {
             tempEl.html("Temperature: " + Math.trunc(response.main.temp) + '&#176');
