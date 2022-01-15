@@ -7,11 +7,11 @@ var uvEl = $('#uv')
 var nameEl = $('.city-name')
 var search = $('#searchBtn')
 var forecastEl = $('.forecast')
+var historyEl =  $('#history')
 
 function weatherCall(city) {
     var city = $('#user-input').val()
-    // searchHistoryBtn = $('<button class="newSearch">' + localStorage.getItem(city, city) + '</button>')
-    // confirmBtn = document.querySelector('.newSearch')
+    localStorage.setItem(city, city)
     fetch('http://api.openweathermap.org/data/2.5/weather?q=' + city + '&appid=' + weatherKey + '&units=imperial')
         .then(data => data.json())
         .then(function (response) {
@@ -57,15 +57,13 @@ function weatherCall(city) {
                     }
                 })
         })
-    localStorage.setItem(city, city)
-    // for (let i = 0; i < localStorage.length; i++) {
-    //     $('.input-group').after($('<button class="newSearch">' + localStorage.getItem(localStorage.key(i)) + '</button>'))
-    //     console.log($('.newSearch').text())
-    // }
-}
-// $('.newSearch').click(function () {
-//     console.log("city")
-//     weatherCall($('.newSearch').text())
-// })
+            historyEl.html("")
+            for (let i = 0; i < localStorage.length; i++) {
+                var historyItem = $("<button>" + localStorage.getItem(localStorage.key(i)) + "</button>");
+                historyItem.attr("class", "form-control d-block bg-white");
+                historyItem.click(weatherCall)
+                historyEl.append(historyItem);
+            }
+        }
 
 search.click(weatherCall) 
